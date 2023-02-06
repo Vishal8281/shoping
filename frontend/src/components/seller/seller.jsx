@@ -6,7 +6,6 @@ import axios from "axios"
 
 const product ={
   categorise:"",
-  image:"",
   name:"",
   price:"",
   about:""
@@ -15,6 +14,9 @@ const product ={
 const Seller = () => {
 
   const [data, setData] = useState(product);
+ const [image,setImage]=useState({
+  image:"",
+ })
 
   console.log("product",data)
 
@@ -22,12 +24,34 @@ const handleChange =(e)=>{
   setData((data)=>({...data,[e.target.name]: e.target.value}))
 }
 
+const convertToBase64 = (file) => {
+  return new Promise((resolve, reject) => {
+    const fileReader = new FileReader();
+    fileReader.readAsDataURL(file);
+    fileReader.onload = () => {
+      resolve(fileReader.result);
+    };
+    fileReader.onerror = (error) => {
+      reject(error);
+    };
+  });
+};
+
+
+const handleImageChange = async (e) => {
+  const file = e.target.files[0];
+  const base64 = await convertToBase64(file);
+  setImage((image)=>({image:base64}));
+  console.log("image",base64)
+};
+
 const handleSubmit =(e)=>{
   e.preventDefault();
   axios.
-      post("http://localhost:8000/api/product",data)
+      post("http://localhost:8000/api/product",{...image,...data})
       .then((res)=>{
-        setData( { categorise:"",
+        setData( {
+        categorise:"",
         image:"",
         name:"",
         price:"",
@@ -73,7 +97,7 @@ const handleSubmit =(e)=>{
             <br/>
             note:file should be less then 16mb.
           </Form.Label>
-          <Form.Control type="file" placeholder="put image" name="image" value={data.image}    onChange={handleChange}/>
+          <Form.Control type="file" placeholder="put image" name="image" value={data.image}    onChange={handleImageChange}/>
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicText">

@@ -9,7 +9,7 @@ import Buy from "../Buy";
 const Cardf = ({ data, handleBuy }) => {
   const { _id, categorise, image, name, price, about } = data;
 
-  console.log("card", data);
+  // console.log("card", data);
 
   return (
     <li key={_id}>
@@ -52,7 +52,7 @@ const Food = () => {
       });
   }, []);
 
-  console.log("food", product);
+  // console.log("foodii", product);
 
   const handleBuy = (e) => {
     setId(e.target.name);
@@ -62,7 +62,7 @@ const Food = () => {
   const handleClose=()=>{
     setOpen(false)
   }
-  console.log("fooddd",id)
+
 
   return (
     <>
@@ -71,8 +71,9 @@ const Food = () => {
          <section>
          <Buy 
         
-          Product={product}
+           _id={id}
            handleClose={handleClose}
+           
          />
        </section>
        
