@@ -5,51 +5,84 @@ import Cloth from "./images/cloth.jpg";
 import Food from "./images/food.png";
 import Tv from "./images/Tv.jpg";
 
-
 const Home = () => {
   return (
     <div>
       <Navbar />
-      <br/>
-      
-      <Container>
-        
+      <br />
+
+      <Container style={{backgroundColor:"#FFFAFA"}}>
         <Row>
-        <Col>
-          <Link to="/cloth">
-            <Card style={{ width: "25rem" }} className="bg-dark  text-black">
-              <Card.Img src={Cloth} alt="Card image" style={{ filter: blur(8) }} />
-              <Card.ImgOverlay>
-                <Card.Title>Cloth</Card.Title>
-              </Card.ImgOverlay>
-            </Card>
-          </Link>
-        </Col>
-        <Col>
-          <Link to="/food">
-            {" "}
-            <Card style={{ width: "25rem" }} className="bg-dark  text-black">
-              <Card.Img src={Food} alt="Card image" />
-              <Card.ImgOverlay>
-                <Card.Title>Food</Card.Title>
-              </Card.ImgOverlay>
-            </Card>
-          </Link>
-        </Col>
-        <Col>
-          <Link to="/electric">
-            {" "}
-            <Card style={{ width: "25rem" }} className="bg-dark  text-black">
-              <Card.Img src={Tv} alt="Card image" />
-              <Card.ImgOverlay>
-                <Card.Title>Electronics</Card.Title>
-              </Card.ImgOverlay>
-            </Card>
-          </Link>
-        </Col>
+          <Col>
+            <Link to="/cloth">
+              <Card
+                style={{ width: "25rem", height: "18rem" }}
+                className="bg-white  text-black"
+              >
+                <Card.Title>Clothing & Apparel</Card.Title>
+              </Card>
+            </Link>
+          </Col>
+          <Col>
+            <Link to="/food">
+              {" "}
+              <Card
+                style={{ width: "25rem", height: "18rem" }}
+                className="bg-white  text-black"
+              >
+                <Card.Title>Grocery</Card.Title>
+              </Card>
+            </Link>
+          </Col>
+          <Col>
+            <Link to="/electric">
+              {" "}
+              <Card
+                style={{ width: "25rem", height: "18rem" }}
+                className="bg-white  text-black"
+              >
+                <Card.Title>Electronics & Gadgets.</Card.Title>
+              </Card>
+            </Link>
+          </Col>
+        </Row>
+        <br/>
+        <Row>
+          <Col>
+            <Link to="/footwear">
+              {" "}
+              <Card
+                style={{ width: "25rem", height: "18rem" }}
+                className="bg-white  text-black"
+              >
+                <Card.Title>Footwear & Shoes</Card.Title>
+              </Card>
+            </Link>
+          </Col>
+          <Col>
+            <Link to="/books">
+              {" "}
+              <Card
+                style={{ width: "25rem", height: "18rem" }}
+                className="bg-white  text-black"
+              >
+                <Card.Title>Books</Card.Title>
+              </Card>
+            </Link>
+          </Col>
+          <Col>
+            <Link to="/stationery">
+              {" "}
+              <Card
+                style={{ width: "25rem", height: "18rem" }}
+                className="bg-white  text-black"
+              >
+                <Card.Title>Stationery</Card.Title>
+              </Card>
+            </Link>
+          </Col>
         </Row>
       </Container>
-
     </div>
   );
 };

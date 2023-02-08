@@ -1,12 +1,25 @@
+const express = require("express");
+const router = express.Router();
 
-const express =require("express");
-const router =express.Router()
+const {
+  postCreateProduct,
+  getAllProduct,
+  findProduct ,
+  getProductbyFood,
+  getProductbyCloth,
+  postUserSignup,
+  postUserLogin ,
+  getProductbyElectronics,
+} = require("../controllers/product.js");
 
-const {postCreateProduct, getAllProduct,findProduct,getProductbyCate}=require("../controllers/product.js")
 
-router.post("/",postCreateProduct);
-router.get("/",getAllProduct)
+router.post("/", postCreateProduct);
+router.get("/", getAllProduct);
+router.get("/food", getProductbyFood);
+router.get("/cloth", getProductbyCloth);
+router.get("/electronics", getProductbyElectronics);
+router.post("/signup", postUserSignup);
+router.post("/login",  postUserLogin);
 router.get('/:id',findProduct)
-router.get('./:categories',getProductbyCate)
 
 module.exports = router;

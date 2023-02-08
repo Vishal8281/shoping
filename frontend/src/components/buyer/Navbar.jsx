@@ -10,6 +10,7 @@ import {
   Button,
 } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+import {Cart} from "react-bootstrap-icons"
 
 const Navbarr = () => {
   return (
@@ -21,12 +22,13 @@ const Navbarr = () => {
      
       <Container>
    
-        <Navbar.Brand href="/">Shop</Navbar.Brand>
+        <Navbar.Brand href="/shop">Shop</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link href="/home">Homes</Nav.Link>
             <Nav.Link href="/Contact">Contact</Nav.Link>
+            <Nav.Link href="/Cart"><Cart/></Nav.Link>
           </Nav>
           <Form className="d-flex">
             <Form.Control
@@ -55,6 +57,7 @@ const Navbarr = () => {
           </Nav>
         </Navbar.Collapse>
       </Container>
+      <Button  variant="outline-primary" href="/">Logout</Button>
     </Navbar>
 
    

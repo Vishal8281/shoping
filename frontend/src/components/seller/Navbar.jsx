@@ -17,7 +17,7 @@ const Navbarr = () => {
 
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
-        <Navbar.Brand href="/">Shop</Navbar.Brand>
+        <Navbar.Brand href="/shop">Shop</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
@@ -59,15 +59,3 @@ const Navbarr = () => {
 
 export default Navbarr;
 
-{
-  /* <nav>
-            <ul>
-                <li>
-                <Link to="/">Home</Link>
-                </li>
-                <li>
-                <Link to="/Contact">Contact</Link>
-                </li>
-            </ul>
-            </nav> */
-}

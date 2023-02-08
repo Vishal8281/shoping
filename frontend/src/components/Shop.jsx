@@ -1,22 +1,24 @@
 import { Link } from "react-router-dom";
 import Navbar from "./buyer/Navbar";
-import { Carousel, Container, Row, Card, Button } from "react-bootstrap";
+import { Carousel, Container, Row, Card, Button, Col } from "react-bootstrap";
 import Cloth from "../components/buyer/images/cloth.jpg";
 import Food from "../components/buyer/images/food.png";
 import Tv from "../components/buyer/images/Tv.jpg";
+
+import {Instagram,Facebook,Linkedin} from "react-bootstrap-icons"
+
 
 const Shop = () => {
   return (
     <>
       <Navbar />
-      {' '}
-      <Container >
-        
-          <Carousel style={{backgroundColor: "#f5f5f5" , margin: "40px 100px " ,height:"400px" }}>
+  
+          <Row  style={{backgroundColor:"#FFFAFA"}} >
+          <Carousel>
             <Carousel.Item interval={1000}>
               <img
                 
-                style={{backgroundColor: "red" ,width:"1200px", height:"400px"}}
+                style={{width:"1520px", height:"400px",padding:"20px 100px"}}
              
                 src={Cloth}
                 alt="First slide"
@@ -32,7 +34,7 @@ const Shop = () => {
             <Carousel.Item interval={500}  >
               <img
                
-               style={{backgroundColor: "red" ,width:"1200px", height:"400px"}}
+               style={{width:"1520px", height:"400px",padding:"20px 100px"}}
                 src={Food}
                 alt="Second slide"
                 
@@ -45,7 +47,7 @@ const Shop = () => {
             </Carousel.Item>
             <Carousel.Item>
               <img
-                style={{backgroundColor: "red" ,width:"1200px", height:"400px"}}
+                 style={{width:"1520px", height:"400px",padding:"20px 100px"}}
                
                 src={Tv}
                 alt="Third slide"
@@ -59,18 +61,67 @@ const Shop = () => {
               </Carousel.Caption>
             </Carousel.Item>
           </Carousel>
+          </Row>
+        <hr/>
+        <Row style={{margin:"20px",backgroundColor:"#FFFAFA"}}>
+          <Col>
+          <Card style={{ width: '18rem' }}>
+      <Card.Img variant="top" src="http://assets.myntassets.com/v1/images/style/properties/c0d7bee21dcc124c3254cfda13193d7f_images.jpg
+" />
+      <Card.Body>
     
+        <Button variant="primary">Add to Cart</Button>
+      </Card.Body>
+    </Card>
+          </Col>
+          <Col>
+          <Card style={{ width: '18rem' }}>
+      <Card.Img variant="top" src="http://assets.myntassets.com/v1/images/style/properties/aa603e98a06792f867b84fb2d3f8c073_images.jpg
+" />
+      <Card.Body>
+      
+        <Button variant="primary">Add to Cart</Button>
+      </Card.Body>
+    </Card>
+          </Col>
+          <Col>
+          <Card style={{ width: '18rem' }}>
+      <Card.Img variant="top" src="http://assets.myntassets.com/v1/images/style/properties/Lee-Cooper-Men-Black-Sandals_1b0f7922cd4ca61ee33d35927163a007_images.jpg
+" />
+      <Card.Body>
+     
+        <Button variant="primary">Add to Cart</Button>
+      </Card.Body>
+    </Card>
+          </Col>
+          <Col>
+          <Card style={{ width: '18rem' }}>
+      <Card.Img variant="top" src="http://assets.myntassets.com/v1/images/style/properties/The-Amazing-Spiderman-Boys-Black-T-shirt_4d4777de917e21e3cc9e1376bad28741_images.jpg" />
+      <Card.Body>
+    
+        <Button variant="primary">Add to Cart</Button>
+      </Card.Body>
+    </Card>
+          </Col>
+      
+        </Row>
+        <Row style={{height:"250px", backgroundColor:"black", color:"white"}}>
+          <Col style={{margin:"20px"}}>
+          <p>About us</p>
+          <p> we are interface between trader and customers who want to sell their products online</p>
+        </Col>
+        <Col style={{margin:"20px"}}>
+        <p>Follw us</p>
+        <Instagram style={{margin:"5px"}} />
+        <Facebook style={{margin:"5px"}} />
+        <Linkedin  style={{margin:"5px"}} />
 
-        {/* <Row>
-          <Card style={{ width: "18rem" }}>
-            <Card.Img variant="top" src="holder.js/100px180" />
-            <Card.Body>
-              <Button variant="primary">Go somewhere</Button>
-            </Card.Body>
-          </Card>
-        </Row> */}
+        
+        </Col>
+          <p style={{margin:"20px"}}>CopyRights-All rights reserved</p>
+        </Row>
 
-      </Container>
+    
     </>
   );
 };

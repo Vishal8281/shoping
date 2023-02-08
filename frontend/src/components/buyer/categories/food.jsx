@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import Buy from "../Buy";
 
 
+
 const Cardf = ({ data, handleBuy }) => {
   const { _id, categorise, image, name, price, about } = data;
 
@@ -42,7 +43,7 @@ const Food = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/api/product")
+      .get("http://localhost:8000/api/product/food")
       .then((res) => {
         console.log("get", res.data.data);
         setProduct(res.data.data);

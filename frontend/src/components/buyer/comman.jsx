@@ -10,13 +10,16 @@ import Seller from "../seller/seller";
 import Dashboard from "../seller/shome";
 import Shome from "../seller/shome";
 import Buy from "./Buy";
+import Signup from  "../Signup.jsx"
+import Login from "../Login";
 
 const Comman = () => {
   return (
     <>
       <BrowserRouter>
         <Routes>
-          <Route index element={<Shop />} />
+          <Route index element={<Login/>} />
+          <Route path="shop" element={<Shop />} />
           <Route path="home" element={<Home />} />
           <Route path="cloth" element={<Cloth />} />
           <Route path="electric" element={<Electric />} />
@@ -27,6 +30,8 @@ const Comman = () => {
           <Route path="dashboard" element={<Dashboard/>} />
           <Route path="shome" element={<Shome/>} />
           <Route path="buy" element={<Buy/>} />
+          <Route path="signup" element={<Signup/>} />
+
 
 
           
