@@ -1,6 +1,5 @@
 import "./buyer.css";
-import Home from "./Home";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 import {
   Navbar,
   Nav,
@@ -10,27 +9,34 @@ import {
   Button,
 } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import {Cart} from "react-bootstrap-icons"
+import { Cart,PersonCircle } from "react-bootstrap-icons";
 
-const Navbarr = () => {
+const Navbarr = ({ state,count }) => {
+  console.log("navbar",state);
   return (
     // <div className="Navbar">
 
-    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">{' '}
+    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+      {" "}
+      <Button>  <Link  to="/shome" state={state}>
+        SELL
+      </Link></Button>
     
-    <Button  variant="outline-primary" href="dashboard">SELL</Button>
-     
       <Container>
-   
         <Navbar.Brand href="/shop">Shop</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link href="/home">Homes</Nav.Link>
             <Nav.Link href="/Contact">Contact</Nav.Link>
-            <Nav.Link href="/Cart"><Cart/></Nav.Link>
+            <Nav.Link href="/Cart">
+              <Cart />
+              {count}
+            
+            </Nav.Link>
           </Nav>
-          <Form className="d-flex">
+         
+          {/* <Form className="d-flex">
             <Form.Control
               type="search"
               placeholder="Search"
@@ -38,32 +44,33 @@ const Navbarr = () => {
               aria-label="Search"
             />
             <Button variant="outline-success">Search</Button>
-          </Form>
-         
+          </Form> */}
+          
           <Nav>
            
-            <NavDropdown title="User" id="collasible-nav-dropdown">
-            <Nav.Link href="/user"> <NavDropdown.Item href="#action/3.1"> Profile</NavDropdown.Item></Nav.Link>
-             
-              <NavDropdown.Item href="#action/3.2">
-                Another action
+            <NavDropdown title="user"  id="collasible-nav-dropdown">
+              <NavDropdown.Item >
+                
+              {state?state.username:"username"}
               </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+
+              <NavDropdown.Item href="#action/3.3">Orders</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Separated link
-              </NavDropdown.Item>
+              <Nav.Link href="/"  >
+            
+                <NavDropdown.Item  href="/">
+                 {state?"Logout":"Login"}
+                </NavDropdown.Item>
+              </Nav.Link>
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>
+        
       </Container>
-      <Button  variant="outline-primary" href="/">Logout</Button>
+     
+      
     </Navbar>
-
-   
   );
 };
 
 export default Navbarr;
-
-

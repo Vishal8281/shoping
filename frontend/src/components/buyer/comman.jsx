@@ -5,13 +5,15 @@ import Food from "./categories/food";
 import Home from "./Home";
 import Contact from "./Contact";
 import Shop from "../Shop.jsx";
-import Order from "../seller/Order"
+import Order from "../seller/Order";
 import Seller from "../seller/seller";
-import Dashboard from "../seller/shome";
+
 import Shome from "../seller/shome";
 import Buy from "./Buy";
-import Signup from  "../Signup.jsx"
-import Login from "../Login";
+import Signup from  "./Signup.jsx";
+import Login from "./Login";
+import Profile  from "./profile";
+
 
 const Comman = () => {
   return (
@@ -27,11 +29,11 @@ const Comman = () => {
           <Route path="Contact" element={<Contact />} />
           <Route path="Seller" element={<Seller/>} />
           <Route path="Order" element={<Order/>} />
-          <Route path="dashboard" element={<Dashboard/>} />
           <Route path="shome" element={<Shome/>} />
           <Route path="buy" element={<Buy/>} />
           <Route path="signup" element={<Signup/>} />
-
+          <Route path="profile" element={<Profile/>} />
+        
 
 
           

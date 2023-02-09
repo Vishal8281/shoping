@@ -1,4 +1,4 @@
-import Navbar from "./Navbar";
+
 import { Form, Button } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import axios from "axios"  
@@ -6,12 +6,13 @@ import axios from "axios"
 
 const product ={
   categorise:"",
+  sellerid:"",
   name:"",
   price:"",
   about:""
 }
 
-const Seller = () => {
+const Seller = ({state}) => {
 
   const [data, setData] = useState(product);
  const [image,setImage]=useState({
@@ -52,6 +53,7 @@ const handleSubmit =(e)=>{
       .then((res)=>{
         setData( {
         categorise:"",
+        sellerid:"",
         image:"",
         name:"",
         price:"",
@@ -72,7 +74,7 @@ const handleSubmit =(e)=>{
 
   return (
     <>
-      <Navbar />
+   
 
       <Form
         onSubmit={handleSubmit}
@@ -82,13 +84,22 @@ const handleSubmit =(e)=>{
           padding: "30px",
         }}
       >
-        <Form.Group className="mb-3" controlId="formBasicImage">
+        <Form.Group className="mb-3" controlId="formBasiccat">
           <Form.Label>Select Categorise</Form.Label>
           <Form.Select aria-label="Default select example" type="text" name="categorise" value={data.categorise}    onChange={handleChange}>
           <option value="category">Select Category</option>
             <option value="food">Food</option>
             <option value="electronics">Electronics</option>
             <option value="cloth">Cloth</option>
+          </Form.Select>
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="formBasiid">
+          <Form.Label>Select ID</Form.Label>
+          <Form.Select aria-label="Default select example" type="text" name="sellerid" value={data.sellerid}   onChange={handleChange}>
+          <option value="category">Select Id</option>
+            <option value="id">{state?state._id:"id"}</option>
+           
           </Form.Select>
         </Form.Group>
 
@@ -116,7 +127,7 @@ const handleSubmit =(e)=>{
         </Form.Group>
 
         <Button variant="primary" type="submit">
-          Submit
+          Sell
         </Button>
       </Form>
     </>

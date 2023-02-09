@@ -1,4 +1,4 @@
-const { Product, User } = require("../models/product.js");
+const { Product, User,Seller } = require("../models/product.js");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
@@ -196,3 +196,11 @@ decoded) => {
 //   console.log("get user")
 
 // };
+
+
+
+////seller
+
+
+
+

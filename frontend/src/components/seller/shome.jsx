@@ -1,36 +1,117 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Navbar from "./Navbar";
-import { Card, Container, Col, Row } from "react-bootstrap";
-import { alignPropType } from "react-bootstrap/esm/types";
-const Shome = () => {
+import { ListGroup, Col, Row, Container } from "react-bootstrap";
+import Order from "./Order";
+import { useState } from "react";
+import Seller from "./seller";
+
+const Shome = ({}) => {
+  const [open, setOpean] = useState(false);
+  const { state } = useLocation();
+  console.log(state);
+
+
+  const handleClicksell =()=>{
+    setOpean(true)
+}
+
+const handleClick=()=>{
+  setOpean(false)
+}
+
   return (
     <>
-      <Navbar />
-      
-           
-            <Link to="/order" style={{ float:"left", margin:"50px 220px",textDecoration: 'none' }} >
-              {" "}
-              <Card style={{width: "18rem", textAlign: "center",height:"180px", backgroundColor:"#f6f6f6" }}>
-                <Card.Body>
-                  <Card.Title style={{color:"black",marginTop:"50PX",fontSize:"30PX",hover:{backgroundColor:"#68ca25./,mnb"}}}>ORDERS</Card.Title>
-                </Card.Body>
-              </Card>
-            </Link>
-        
+      <Navbar state={state} />
 
-       
-            {" "}
-            <Link to="/seller" style={{float:"left", margin:"50px 220px",textDecoration: 'none' }}>
-              {" "}
-              <Card style={{ width: "18rem", textAlign: "center",height:"180px",backgroundColor:"#f6f6f6" }}>
-                <Card.Body>
-                  <Card.Title style={{color:"black",marginTop:"50PX",fontSize:"30PX"}}>SELL</Card.Title>
-                </Card.Body>
-              </Card>
-            </Link>
-            <hr/>
+      <Row style={{ backgroundColor: "" }}>
+        <Col>
+          <ListGroup
+            style={{ height: "700px", position: "static", width: "300px" , }}
+          >
+            <ListGroup.Item style={{backgroundColor:"#f5f5f5"}}>
+              <h3>Profile</h3>
+              
+              <ul>
+                <li>{state ? state.username :"Login to see profile"}</li>
+                
+                <li>{state ? state.email : ""}</li>
+
+                <li></li>
+
+                <li></li>
+
+                <li>{state ? state._id : ""}</li>
+              </ul>
+            </ListGroup.Item>
+            <ListGroup.Item style={{ height: "50px",backgroundColor:"#f5f5f5" }}></ListGroup.Item>
+            <ListGroup.Item style={{backgroundColor:"#f5f5f5"}}>
+              <button
+                 onClick={handleClicksell}
+                 
+                style={{
+                  padding: "10px",
+                  margin: "10px",
+                  textDecoration: "none",
+                  color: "black",
+                  border:"none"
+                }}
+              >
+                SELL
+              </button>
+            </ListGroup.Item>
+            <ListGroup.Item style={{backgroundColor:"#f5f5f5"}}>
+              <button
+             onClick={handleClick}
+                style={{
+                  padding: "10px",
+                  margin: "10px",
+                  textDecoration: "none",
+                  color: "black",
+                  border:"none",
+               
+                }}
+              >
+                ORDERS
+              </button>
+            </ListGroup.Item>
+            <ListGroup.Item style={{backgroundColor:"#f5f5f5"}}>
+              <Link
+               to="/eidit"
+                style={{
+              
+                  padding: "10px",
+                  margin: "10px",
+                  textDecoration: "none",
+                  color: "black",
+                }}
+              >
+                Edit Profile
+              </Link>
+            </ListGroup.Item>
+            <ListGroup.Item style={{backgroundColor:"#f5f5f5"}}>
+              <Link
+              
+                to="/Settings"
+                style={{
+                 
+                  padding: "10px",
+                  margin: "10px",
+                  textDecoration: "none",
+                  color: "black",
+                }}
+              >
+                {" "}
+                Settings
+              </Link>
+            </ListGroup.Item>
+            <ListGroup.Item style={{ height: "200px",backgroundColor:"#f5f5f5" }}></ListGroup.Item>
+          </ListGroup>
+        </Col>
+        <Col xs={9} style={{ backgroundColor: "", float: "right" }}>
+          {open ? <Seller state={state} /> : <Order />}
         
-   
+        </Col>
+      </Row>
     </>
   );
 };

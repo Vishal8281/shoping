@@ -11,7 +11,8 @@ import {
 } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-const Navbarr = () => {
+const Navbarr = (state) => {
+  console.log("seller",state)
   return (
     // <div className="Navbar">
 
@@ -34,23 +35,11 @@ const Navbarr = () => {
             <Button variant="outline-success">Search</Button>
           </Form>
           {" "}
-          <Nav>
-           
-            <NavDropdown title="User" id="collasible-nav-dropdown">
-            <Nav.Link href="/user"> <NavDropdown.Item href="#action/3.1"> Profile</NavDropdown.Item></Nav.Link>
-             
-              <NavDropdown.Item href="#action/3.2">
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Separated link
-              </NavDropdown.Item>
-            </NavDropdown>
-          </Nav>
+          
+            
         </Navbar.Collapse>
       </Container>
+      <Link variant="outline-success" to="/"> {state?"Logout":"Login"}</Link>
     </Navbar>
 
     // </div>

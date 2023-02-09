@@ -10,6 +10,8 @@ const {
   postUserSignup,
   postUserLogin ,
   getProductbyElectronics,
+  // postSellerLogin,
+  // postSellerSignup,
 } = require("../controllers/product.js");
 
 
@@ -20,6 +22,8 @@ router.get("/cloth", getProductbyCloth);
 router.get("/electronics", getProductbyElectronics);
 router.post("/signup", postUserSignup);
 router.post("/login",  postUserLogin);
+// router.post("/slogin",postSellerLogin)
+// router.post("/ssignup",postSellerSignup)
 router.get('/:id',findProduct)
 
 module.exports = router;

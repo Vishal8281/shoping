@@ -1,17 +1,39 @@
-import { Link } from "react-router-dom";
+import { Link ,useLocation} from "react-router-dom";
 import Navbar from "./buyer/Navbar";
 import { Carousel, Container, Row, Card, Button, Col } from "react-bootstrap";
 import Cloth from "../components/buyer/images/cloth.jpg";
 import Food from "../components/buyer/images/food.png";
 import Tv from "../components/buyer/images/Tv.jpg";
-
+import {useState} from "react"
 import {Instagram,Facebook,Linkedin} from "react-bootstrap-icons"
 
 
+
 const Shop = () => {
+  const [count, setCoutn]=useState(0)
+  const {state}=useLocation()
+  console.log("profile")
+   
+  const handleClick =()=>{
+
+    let product = count+1;
+    setCoutn(product)
+
+
+  }
+
+
+
+
+
+
   return (
+
+    
+
+
     <>
-      <Navbar />
+      <Navbar state={state}  count={count}/>
   
           <Row  style={{backgroundColor:"#FFFAFA"}} >
           <Carousel>
@@ -70,7 +92,7 @@ const Shop = () => {
 " />
       <Card.Body>
     
-        <Button variant="primary">Add to Cart</Button>
+        <Button onClick={handleClick}  variant="primary">Add to Cart</Button>
       </Card.Body>
     </Card>
           </Col>
@@ -80,7 +102,7 @@ const Shop = () => {
 " />
       <Card.Body>
       
-        <Button variant="primary">Add to Cart</Button>
+        <Button onClick={handleClick} variant="primary">Add to Cart</Button>
       </Card.Body>
     </Card>
           </Col>
@@ -90,7 +112,7 @@ const Shop = () => {
 " />
       <Card.Body>
      
-        <Button variant="primary">Add to Cart</Button>
+        <Button onClick={handleClick} variant="primary">Add to Cart</Button>
       </Card.Body>
     </Card>
           </Col>
@@ -99,7 +121,7 @@ const Shop = () => {
       <Card.Img variant="top" src="http://assets.myntassets.com/v1/images/style/properties/The-Amazing-Spiderman-Boys-Black-T-shirt_4d4777de917e21e3cc9e1376bad28741_images.jpg" />
       <Card.Body>
     
-        <Button variant="primary">Add to Cart</Button>
+        <Button onClick={handleClick} variant="primary">Add to Cart</Button>
       </Card.Body>
     </Card>
           </Col>
