@@ -5,7 +5,7 @@ const ProductSchema = new mongoose.Schema({
     type: "String",
     required: true,
   },
-  sellerid: {
+  number: {
     type: "String",
     required: true,
   },
@@ -28,6 +28,10 @@ const ProductSchema = new mongoose.Schema({
 });
 
 const userSchema = new mongoose.Schema({
+  number: {
+    type: "String",
+    required: true,
+  },
   username: {
     type: "String",
     required: true,
@@ -44,30 +48,45 @@ const userSchema = new mongoose.Schema({
 });
 
 const sellerSchema = new mongoose.Schema({
-  name: {
-    type: "String",
-    required: true,
-  },
-
-  semail: {
-    type: "String",
-    required: true,
-  },
-  spassword: {
-    type: "String",
-    required: true,
-  },
-  sconfpassword: {
-    type: "String",
-    required: true,
-  },
-  company: {
+  categorise: {
     type: "String",
     required: true,
   },
   number: {
-    type: "number",
+    type: "String",
     required: true,
+  },
+  image: {
+    type: "String",
+    required: true,
+  },
+  name: {
+    type: "String",
+    required: true,
+  },
+  price: {
+    type: "Number",
+    required: true,
+  },
+  about: {
+    type: "String",
+    required: true,
+  },
+  count: {
+    type: "String",
+    required: true,
+  },
+  mnumber: {
+    type: "String",
+    required: true,
+  },
+  address: {
+    type: "String",
+    required: true,
+  },
+  note: {
+    type: "String",
+   
   },
 });
 

@@ -4,14 +4,16 @@ const router = express.Router();
 const {
   postCreateProduct,
   getAllProduct,
-  findProduct ,
+  getProductbyBook,
+  getProductbyFootwear,
+  getProductbyStationery,
   getProductbyFood,
   getProductbyCloth,
   postUserSignup,
   postUserLogin ,
   getProductbyElectronics,
-  // postSellerLogin,
-  // postSellerSignup,
+  postUserBuy,
+  getOrder
 } = require("../controllers/product.js");
 
 
@@ -20,10 +22,17 @@ router.get("/", getAllProduct);
 router.get("/food", getProductbyFood);
 router.get("/cloth", getProductbyCloth);
 router.get("/electronics", getProductbyElectronics);
+router.get("/book",  getProductbyBook);
+router.get("/footwear",  getProductbyFootwear);
+router.get("/stationery",  getProductbyStationery);
 router.post("/signup", postUserSignup);
 router.post("/login",  postUserLogin);
-// router.post("/slogin",postSellerLogin)
+router.post("/buy",postUserBuy)
+router.get('/:number',getOrder)
+
+
 // router.post("/ssignup",postSellerSignup)
-router.get('/:id',findProduct)
+
+
 
 module.exports = router;

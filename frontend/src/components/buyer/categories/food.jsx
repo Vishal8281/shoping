@@ -7,7 +7,7 @@ import Buy from "../Buy";
 
 
 
-const Cardf = ({ data, handleBuy }) => {
+const Cardf = ({ data }) => {
   const { _id, categorise, image, name, price, about } = data;
 
   // console.log("card", data);
@@ -22,14 +22,12 @@ const Cardf = ({ data, handleBuy }) => {
         />
         <Card.Body>
           <Card.Title>{name}</Card.Title>
-          <Card.Text>{price}</Card.Text>
+          <Card.Text>${price}</Card.Text>
           <Card.Text>{about}</Card.Text>
           <Card.Text>{categorise}</Card.Text>
-          <Button onClick={handleBuy} name={_id} variant="primary">
-            {/* <Link style={{ color: "white", textDecoration: "none" }} to="/buy"> */}
-              Buy
-            {/* </Link> */}
-          </Button>
+          <Button   variant="primary"> <Link  style={{color:"white",textDecoration:"none"}}  to="/buy" state={data}>Buy</Link></Button>
+          <Button   variant="primary">Buy</Button>
+        
         </Card.Body>
       </Card>
     </li>
@@ -38,8 +36,6 @@ const Cardf = ({ data, handleBuy }) => {
 
 const Food = () => {
   const [product, setProduct] = useState([]);
-  const [id, setId] = useState("");
-  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     axios
@@ -55,37 +51,20 @@ const Food = () => {
 
   // console.log("foodii", product);
 
-  const handleBuy = (e) => {
-    setId(e.target.name);
-    setOpen(true);
-  };
 
-  const handleClose=()=>{
-    setOpen(false)
-  }
 
 
   return (
     <>
       <Navbar />
-      {open ? (
-         <section>
-         <Buy 
-        
-           _id={id}
-           handleClose={handleClose}
-           
-         />
-       </section>
-       
-      ) : (
+   <h1>grocery</h1>
         <ul>
         {product.map((data) => (
           <Cardf data={data} handleBuy={handleBuy} />
         ))}
       </ul>
        
-      )}
+    
     </>
   );
 };

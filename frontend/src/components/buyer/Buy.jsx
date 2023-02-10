@@ -1,52 +1,102 @@
-import { Container, Card,Button } from "react-bootstrap";
+import { Container, Card, Button, Form } from "react-bootstrap";
 import Navbar from "./Navbar";
 import axios from "axios";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
+import { Link, useNavigate } from "react-router-dom";
 
+const Buy = () => {
+  const { state } = useLocation();
+  console.log("Buy", state);
+  const navigate = useNavigate();
 
+  const [data, setData] = useState({
+    count: "",
+    mnumber:"",
+    address: "",
+    note: "",
+  });
 
-const Buy = ({ handleClose,_id}) => {
-    // console.log("Buy",_id)
+  const handleChange = (e) => {
+    setData((data) => ({ ...data, [e.target.name]: e.target.value }));
+    console.log(data);
+  };
 
-    const [data,setData]=useState([]);
-
-    useEffect(() => {
-        axios
-          .get(`http://localhost:8000/api/product/${_id}`)
-          .then((res) => {
-            console.log("get", res.data.data);
-            setData(res.data.data);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      }, []);
-
-console.log("buy product",data.name)
-
-// const { _id, categorise, image, name, price, about } = data.data;
-   
-    
+  const handleClick = () => {
+    axios
+      .post("http://localhost:8000/api/product/buy", { ...state, ...data })
+      .then((res) => {
+        alert("order is send");
+        navigate("/home")
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
 
   return (
     <>
-    <Button onClick={handleClose}>BACK</Button>
-    <Container >
-      <Card className="text-center" style={{ width: "1000px", height: "600px",margin:"40px 150px" }}>
-        <Card.Img  style={{width:"100%",height:"50%",}} variant="top" src={data.image} />
-        <Card.Body>
-          <Card.Title>{data.name}</Card.Title>
-          <Card.Text>
-           Price: ${data.price}
-          </Card.Text>
-          <Card.Text>
-           {data.about}
-          </Card.Text>
-          <Button  variant="primary">Buy</Button>
-        </Card.Body>
-      </Card>
-    </Container>
+      <Navbar />
+      <Container>
+        <Card
+          className="text-center"
+          style={{ width: "1000px", height: "1000px", margin: "40px 150px" }}
+        >
+          <Card.Img
+            style={{ width: "100%", height: "400px" }}
+            variant="top"
+            src={state.image}
+          />
+          <Card.Body>
+            <Card.Title>{state.name}</Card.Title>
+            <Card.Text>Price: ${state.price}</Card.Text>
+            <Card.Text>{state.about}</Card.Text>
+            <Form style={{ margin: "20px" }}>
+            <Form.Label>How many {state.name} you want</Form.Label>
+              <Form.Control
+                onChange={handleChange}
+                style={{ margin: "20px auto", width: "50px" }}
+                type="number"
+                value={data.count}
+                name="count"
+              />
+             
+              <Form.Control
+                onChange={handleChange}
+                style={{ margin: "20px auto" }}
+                type="text"
+                value={data.mnumber}
+                name="mnumber"
+                placeholder="Enter mobile number"
+              />
+
+              <Form.Control
+                onChange={handleChange}
+                style={{ margin: "20px auto" }}
+                as="textarea"
+                rows={3}
+                value={data.address}
+                name="address"
+                placeholder="address"
+              />
+              <Form.Control
+                onChange={handleChange}
+                as="textarea"
+                rows={3}
+                value={data.note}
+                name="note"
+                placeholder="note for seller"
+              />
+            </Form>
+            <Card.Text>Total Price:${state.price * data.count}</Card.Text>
+
+            <Button onClick={handleClick} variant="primary">
+              pay
+            </Button>
+          </Card.Body>
+        </Card>
+      </Container>
     </>
   );
 };

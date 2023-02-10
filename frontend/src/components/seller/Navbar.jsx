@@ -18,11 +18,11 @@ const Navbarr = (state) => {
 
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
-        <Navbar.Brand href="/shop">Shop</Navbar.Brand>
+        <Navbar.Brand href="/shop" state={state}>Shop</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="/shome">Homes</Nav.Link>
+            <Nav.Link href="/home">Homes</Nav.Link>
             <Nav.Link href="/Contact">Contact</Nav.Link>
           </Nav>
           <Form className="d-flex">
@@ -39,7 +39,8 @@ const Navbarr = (state) => {
             
         </Navbar.Collapse>
       </Container>
-      <Link variant="outline-success" to="/"> {state?"Logout":"Login"}</Link>
+      <Button>  <Link style={{color:"white"}} variant="outline-success" to="/"> {(state)?("Logout"):("Login")}</Link></Button>
+     
     </Navbar>
 
     // </div>

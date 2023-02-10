@@ -32,15 +32,16 @@ const handleClick=()=>{
               <h3>Profile</h3>
               
               <ul>
+                
                 <li>{state ? state.username :"Login to see profile"}</li>
                 
-                <li>{state ? state.email : ""}</li>
+                <li>{state ? state.email : <Link to="/">Login</Link>}</li>
+
+                <li> {state?state.number:""}</li>
 
                 <li></li>
 
-                <li></li>
-
-                <li>{state ? state._id : ""}</li>
+               
               </ul>
             </ListGroup.Item>
             <ListGroup.Item style={{ height: "50px",backgroundColor:"#f5f5f5" }}></ListGroup.Item>
@@ -107,10 +108,12 @@ const handleClick=()=>{
             <ListGroup.Item style={{ height: "200px",backgroundColor:"#f5f5f5" }}></ListGroup.Item>
           </ListGroup>
         </Col>
-        <Col xs={9} style={{ backgroundColor: "", float: "right" }}>
-          {open ? <Seller state={state} /> : <Order />}
+        {state? <Col xs={9} style={{ backgroundColor: "", float: "right" }}>
+          
+          {open ? <Seller state={state} /> : <Order state={state} />}
         
-        </Col>
+        </Col>:<Col></Col>}
+       
       </Row>
     </>
   );

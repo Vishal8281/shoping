@@ -6,7 +6,7 @@ import axios from "axios"
 
 const product ={
   categorise:"",
-  sellerid:"",
+  number:"",
   name:"",
   price:"",
   about:""
@@ -19,10 +19,10 @@ const Seller = ({state}) => {
   image:"",
  })
 
-  console.log("product",data)
 
 const handleChange =(e)=>{
   setData((data)=>({...data,[e.target.name]: e.target.value}))
+  console.log("product data",data)
 }
 
 const convertToBase64 = (file) => {
@@ -53,13 +53,13 @@ const handleSubmit =(e)=>{
       .then((res)=>{
         setData( {
         categorise:"",
-        sellerid:"",
+        number:"",
         image:"",
         name:"",
         price:"",
         about:""});
         console.log(res.data.message);
-       
+         alert("Product Added")
 
         })
         .catch((err) => {
@@ -76,7 +76,7 @@ const handleSubmit =(e)=>{
     <>
    
 
-      <Form
+     {state? <Form
         onSubmit={handleSubmit}
         style={{
           backgroundColor: "#f5f5f5",
@@ -91,17 +91,14 @@ const handleSubmit =(e)=>{
             <option value="food">Food</option>
             <option value="electronics">Electronics</option>
             <option value="cloth">Cloth</option>
+            <option value="footwear">Footwear</option>
+            <option value="book">Book</option>
+            <option value="stationery">Stationery</option>
+
           </Form.Select>
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formBasiid">
-          <Form.Label>Select ID</Form.Label>
-          <Form.Select aria-label="Default select example" type="text" name="sellerid" value={data.sellerid}   onChange={handleChange}>
-          <option value="category">Select Id</option>
-            <option value="id">{state?state._id:"id"}</option>
-           
-          </Form.Select>
-        </Form.Group>
+       
 
         <Form.Group className="mb-3" controlId="formBasicImage">
           <Form.Label>Put product image
@@ -109,6 +106,13 @@ const handleSubmit =(e)=>{
             note:file should be less then 16mb.
           </Form.Label>
           <Form.Control type="file" placeholder="put image" name="image" value={data.image}    onChange={handleImageChange}/>
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="formBasiid">
+          <Form.Label>Mobile Number</Form.Label>
+          
+          <Form.Control type="text" placeholder="Enter-number" name="number" value={data.number}    onChange={handleChange}/>
+         
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicText">
@@ -129,7 +133,7 @@ const handleSubmit =(e)=>{
         <Button variant="primary" type="submit">
           Sell
         </Button>
-      </Form>
+      </Form>:<h1 style={{margin:"250px"}}>Log in  to sell</h1>}
     </>
   );
 };

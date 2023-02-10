@@ -7,7 +7,7 @@ import Buy from "../Buy";
 
 
 
-const Cardf = ({ data, handleBuy }) => {
+const Cardf = ({ data }) => {
   const { _id, categorise, image, name, price, about } = data;
 
   // console.log("card", data);
@@ -18,14 +18,16 @@ const Cardf = ({ data, handleBuy }) => {
         <Card.Img
           variant="top"
           src={image}
-          style={{ backgroundColor: "red", height: "100px" }}
+          style={{ backgroundColor: "red", height: "200px" }}
         />
         <Card.Body>
           <Card.Title>{name}</Card.Title>
-          <Card.Text>{price}</Card.Text>
+          <Card.Text>${price}</Card.Text>
           <Card.Text>{about}</Card.Text>
           <Card.Text>{categorise}</Card.Text>
-          <Button onClick={handleBuy} name={_id} variant="primary">Buy</Button>
+          <Button   variant="primary"> <Link  style={{color:"white",textDecoration:"none"}}  to="/buy" state={data}>Buy</Link></Button>
+        
+          <Button style={{marginLeft:"50px"}} variant="primary">Add to Cart</Button>
         </Card.Body>
       </Card>
     </li>
@@ -34,8 +36,7 @@ const Cardf = ({ data, handleBuy }) => {
 
 const Cloth = () => {
   const [product, setProduct] = useState([]);
-  const [id, setId] = useState("");
-  const [open, setOpen] = useState(false);
+
 
   useEffect(() => {
     axios
@@ -51,37 +52,21 @@ const Cloth = () => {
 
   // console.log("foodii", product);
 
-  const handleBuy = (e) => {
-    setId(e.target.name);
-    setOpen(true);
-  };
 
-  const handleClose=()=>{
-    setOpen(false)
-  }
+
 
 
   return (
-    <>
+    < >
       <Navbar />
-      {open ? (
-         <section>
-         <Buy 
-        
-           _id={id}
-           handleClose={handleClose}
-           
-         />
-       </section>
-       
-      ) : (
+   
         <ul>
         {product.map((data) => (
-          <Cardf data={data} handleBuy={handleBuy} />
+          <Cardf data={data} />
         ))}
       </ul>
        
-      )}
+   
     </>
   );
 };

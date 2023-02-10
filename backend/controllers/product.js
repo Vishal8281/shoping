@@ -17,12 +17,12 @@ exports.getAllProduct = (req, res) => {
     .catch((err) => res.status(404).json({ error: err.message }));
 };
 
-exports.findProduct = (req, res) => {
-  console.log("server update", req.body);
-  Product.findById(req.params.id, req.body)
-    .then((data) => res.json({ message: "ok", data }))
-    .catch((err) => res.status(404).json({ error: err.message }));
-};
+// exports.findProduct = (req, res) => {
+//   console.log("server update", req.body);
+//   Product.find({ _id:req.params.id})
+//     .then((data) => res.json({ message: "ok", data }))
+//     .catch((err) => res.status(404).json({ error: err.message }));
+// };
 
 exports.getProductbyFood = (req, res) => {
   console.log("get food");
@@ -45,6 +45,38 @@ exports.getProductbyElectronics = (req, res) => {
     .catch((err) => res.status(404).json({ error: err.message }));
 };
 
+exports.getProductbyBook = (req, res) => {
+  console.log("get cloth");
+  Product.find({ categorise: "book" })
+    .then((data) => res.json({ data }))
+    .catch((err) => res.status(404).json({ error: err.message }));
+};
+exports.getProductbyFootwear = (req, res) => {
+  console.log("get cloth");
+  Product.find({ categorise: "footwear" })
+    .then((data) => res.json({ data }))
+    .catch((err) => res.status(404).json({ error: err.message }));
+};
+exports.getProductbyStationery = (req, res) => {
+  console.log("get cloth");
+  Product.find({ categorise: "stationery" })
+    .then((data) => res.json({ data }))
+    .catch((err) => res.status(404).json({ error: err.message }));
+};
+
+
+exports.postUserBuy=(req,res)=>{
+  Seller.create(req.body)
+  .then((data) => res.json({ message: "added ", data }))
+  .catch((err) => res.status(404).json({ error: err.message }));
+}
+
+exports.getOrder=(req,res)=>{
+  // console.log("response",req.params.number)
+  Seller.find( { number:req.params.number})
+  .then((data) => res.json({ message: "order", data }))
+  .catch((err) => res.status(404).json({ error: err.message }));
+}
 /// login //
 
 const emailRegexp =
@@ -52,9 +84,12 @@ const emailRegexp =
 
 exports.postUserSignup = (req, res) => {
   console.log("user added");
-  let { username, email, password, confpassword } = req.body;
+  let { number, username, email, password, confpassword } = req.body;
 
   let errors = [];
+  if (!number) {
+    errors.push({ number: "required" });
+  }
   if (!username) {
     errors.push({ username: "required" });
   }
@@ -89,9 +124,11 @@ exports.postUserSignup = (req, res) => {
           .json({ errors: [{ user: "email already exists" }] });
       } else {
         const user = new User({
+          number:number,
           username: username,
           email: email,
           password: password,
+
         });
         bcrypt.genSalt(10, (err, salt) => {
           bcrypt.hash(password, salt, (err, hash) => {
@@ -143,8 +180,8 @@ exports.postUserLogin = (req, res) => {
       });
     } else {
        bcrypt.compare(password,user.password).then(isMatch => {
-        console.log(password,user.password)
-          if (isMatch) {
+       
+          if (!isMatch) {
            return res.status(400).json({ errors: [{ password:
 "incorrect" }] 
            });

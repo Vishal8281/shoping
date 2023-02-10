@@ -19,6 +19,7 @@ import axios from "axios"
 const Sign = () => {
 
 const [user,setUser]=useState({
+  number:"",
   username:"",
   email:"",
   password:"",
@@ -38,6 +39,7 @@ const handleSubmit=(e)=>{
   axios.post("http://localhost:8000/api/product/signup",user)
   .then((res)=>{
    setUser({
+  number:"",
   username:"",
   email:"",
   password:"",
@@ -71,6 +73,18 @@ const handleSubmit=(e)=>{
       <Form.Label>
         Signup <Link to="/"> Login</Link>
       </Form.Label>
+      <Form.Group className="mb-3" controlId="formBasicnumber">
+        <PersonFill className="ml-4"  />
+        <Form.Control
+         type="text"
+          placeholder="Enter mobile number"
+          name="number"
+          
+          value={user.number}
+          onChange={handleChange}
+        />
+      </Form.Group>
+
       <Form.Group className="mb-3" controlId="formBasicname">
         <PersonFill className="ml-4"  />
         <Form.Control

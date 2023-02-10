@@ -6,7 +6,8 @@ import { Link } from "react-router-dom";
 import Buy from "../Buy";
 
 
-const Cardf = ({ data,  }) => {
+
+const Cardf = ({ data }) => {
   const { _id, categorise, image, name, price, about } = data;
 
   // console.log("card", data);
@@ -17,7 +18,7 @@ const Cardf = ({ data,  }) => {
         <Card.Img
           variant="top"
           src={image}
-          style={{ backgroundColor: "red", height: "100px" }}
+          style={{ backgroundColor: "red", height: "200px" }}
         />
         <Card.Body>
           <Card.Title>{name}</Card.Title>
@@ -25,21 +26,21 @@ const Cardf = ({ data,  }) => {
           <Card.Text>{about}</Card.Text>
           <Card.Text>{categorise}</Card.Text>
           <Button   variant="primary"> <Link  style={{color:"white",textDecoration:"none"}}  to="/buy" state={data}>Buy</Link></Button>
-          <Button   variant="primary">Buy</Button>
+        
+          <Button style={{marginLeft:"50px"}} variant="primary">Add to Cart</Button>
         </Card.Body>
       </Card>
     </li>
   );
 };
 
-
-const Electric = () => {
+const Footwear = () => {
   const [product, setProduct] = useState([]);
 
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/api/product/electronics")
+      .get("http://localhost:8000/api/product/footwear")
       .then((res) => {
         console.log("get", res.data.data);
         setProduct(res.data.data);
@@ -53,13 +54,15 @@ const Electric = () => {
 
 
 
+
+
   return (
-    <>
+    < >
       <Navbar />
-      <h1>electric</h1>
+       <h1>footwear</h1>
         <ul>
         {product.map((data) => (
-          <Cardf data={data} handleBuy={handleBuy} />
+          <Cardf data={data} />
         ))}
       </ul>
        
@@ -68,4 +71,5 @@ const Electric = () => {
   );
 };
 
-export default Electric;
+
+export default Footwear;

@@ -12,13 +12,14 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Cart,PersonCircle } from "react-bootstrap-icons";
 
 const Navbarr = ({ state,count }) => {
+
   console.log("navbar",state);
   return (
     // <div className="Navbar">
 
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       {" "}
-      <Button>  <Link  to="/shome" state={state}>
+      <Button>  <Link style={{color:"white",textDecoration:"none"}} to="/shome" state={state}>
         SELL
       </Link></Button>
     

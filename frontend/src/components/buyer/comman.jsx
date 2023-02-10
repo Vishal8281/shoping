@@ -7,12 +7,14 @@ import Contact from "./Contact";
 import Shop from "../Shop.jsx";
 import Order from "../seller/Order";
 import Seller from "../seller/seller";
-
 import Shome from "../seller/shome";
 import Buy from "./Buy";
 import Signup from  "./Signup.jsx";
 import Login from "./Login";
 import Profile  from "./profile";
+import Book from "./categories/Book";
+import Footwear from "./categories/Footwear";
+import Stationery from "./categories/Stationery";
 
 
 const Comman = () => {
@@ -33,6 +35,9 @@ const Comman = () => {
           <Route path="buy" element={<Buy/>} />
           <Route path="signup" element={<Signup/>} />
           <Route path="profile" element={<Profile/>} />
+          <Route path="book" element={<Book/>} />
+          <Route path="footwear" element={<Footwear/>} />
+          <Route path="stationery" element={<Stationery/>} />
         
 
 
