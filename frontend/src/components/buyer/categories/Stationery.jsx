@@ -11,6 +11,38 @@ const Cardf = ({ data }) => {
   const { _id, categorise, image, name, price, about } = data;
 
   // console.log("card", data);
+  
+  const get = sessionStorage.getItem("userdata");
+  const state = JSON.parse(get);
+  const num ={
+    categorise:data.categorise,
+    number:data.number,
+    image:data.image,
+    name:data.name,
+    price:data.price,
+    about:data.about,
+    usernumber:state.number}
+ 
+
+  
+
+
+  const handleCart=()=>{
+
+
+    axios
+    .post("http://localhost:8000/api/product/cart",num
+    )
+    .then((res) => {
+      console.log(res);
+    
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+
+  }
+
 
   return (
     <li key={_id}>
@@ -27,7 +59,7 @@ const Cardf = ({ data }) => {
           <Card.Text>{categorise}</Card.Text>
           <Button   variant="primary"> <Link  style={{color:"white",textDecoration:"none"}}  to="/buy" state={data}>Buy</Link></Button>
         
-          <Button style={{marginLeft:"50px"}} variant="primary">Add to Cart</Button>
+          <Button onClick={handleCart} style={{marginLeft:"50px"}} variant="primary">Add to Cart</Button>
         </Card.Body>
       </Card>
     </li>

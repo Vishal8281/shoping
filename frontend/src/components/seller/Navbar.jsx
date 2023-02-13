@@ -1,6 +1,6 @@
 
 
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
   Navbar,
   Nav,
@@ -11,19 +11,25 @@ import {
 } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-const Navbarr = (state) => {
-  console.log("seller",state)
+const Navbarr = () => {
+   const navigate=useNavigate()
+
+  const handleLogout =()=>{
+    sessionStorage.clear()
+    navigate("/")
+  }
+ 
   return (
     // <div className="Navbar">
 
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
-        <Navbar.Brand href="/shop" state={state}>Shop</Navbar.Brand>
+        <Navbar.Brand href="/shop">Shop</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link href="/home">Homes</Nav.Link>
-            <Nav.Link href="/Contact">Contact</Nav.Link>
+            <Nav.Link href="/Contact" >Contact</Nav.Link>
           </Nav>
           <Form className="d-flex">
             <Form.Control
@@ -39,7 +45,7 @@ const Navbarr = (state) => {
             
         </Navbar.Collapse>
       </Container>
-      <Button>  <Link style={{color:"white"}} variant="outline-success" to="/"> {(state)?("Logout"):("Login")}</Link></Button>
+      <Button onClick={handleLogout}>Logout</Button>
      
     </Navbar>
 

@@ -11,9 +11,16 @@ import {Instagram,Facebook,Linkedin} from "react-bootstrap-icons"
 
 const Shop = () => {
   const [count, setCoutn]=useState(0)
-  const {state}=useLocation()
-  console.log("profile")
+
+  
    
+
+ 
+
+  const get =sessionStorage.getItem("userdata")
+  
+   const state=JSON.parse(get)
+
   const handleClick =()=>{
 
     let product = count+1;
@@ -33,7 +40,7 @@ const Shop = () => {
 
 
     <>
-      <Navbar state={state}  count={count}/>
+      <Navbar />
   
           <Row  style={{backgroundColor:"#FFFAFA"}} >
           <Carousel>

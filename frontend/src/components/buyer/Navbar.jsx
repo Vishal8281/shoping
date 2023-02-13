@@ -1,5 +1,5 @@
 import "./buyer.css";
-import {Link} from "react-router-dom";
+import { json, useNavigate } from "react-router-dom";
 import {
   Navbar,
   Nav,
@@ -9,34 +9,45 @@ import {
   Button,
 } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Cart,PersonCircle } from "react-bootstrap-icons";
+import { Cart, PersonCircle } from "react-bootstrap-icons";
 
-const Navbarr = ({ state,count }) => {
+const Navbarr = () => {
+const get = sessionStorage.getItem("userdata");
+const state = JSON.parse(get);
 
-  console.log("navbar",state);
+const orderno = sessionStorage.getItem("count")
+const count =JSON.parse(orderno)
+
+
+
+
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    sessionStorage.clear();
+    navigate("/");
+  };
+
   return (
     // <div className="Navbar">
 
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       {" "}
-      <Button>  <Link style={{color:"white",textDecoration:"none"}} to="/shome" state={state}>
-        SELL
-      </Link></Button>
-    
+   
       <Container>
         <Navbar.Brand href="/shop">Shop</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="/home">Homes</Nav.Link>
+            <Nav.Link href="/home" state={state}>
+              Homes
+            </Nav.Link>
             <Nav.Link href="/Contact">Contact</Nav.Link>
-            <Nav.Link href="/Cart">
+            <Nav.Link href="/cart">
               <Cart />
               {count}
-            
             </Nav.Link>
           </Nav>
-         
+
           {/* <Form className="d-flex">
             <Form.Control
               type="search"
@@ -46,30 +57,25 @@ const Navbarr = ({ state,count }) => {
             />
             <Button variant="outline-success">Search</Button>
           </Form> */}
-          
+
           <Nav>
-           
-            <NavDropdown title="user"  id="collasible-nav-dropdown">
-              <NavDropdown.Item >
-                
-              {state?state.username:"username"}
+            <NavDropdown title="user" id="collasible-nav-dropdown">
+              <NavDropdown.Item>
+                {state ? state.username : "username"}
               </NavDropdown.Item>
 
-              <NavDropdown.Item href="#action/3.3">Orders</NavDropdown.Item>
+              <NavDropdown.Item href="/userorder">Orders</NavDropdown.Item>
+              <NavDropdown.Item href="/shome">Sell</NavDropdown.Item>
               <NavDropdown.Divider />
-              <Nav.Link href="/"  >
-            
-                <NavDropdown.Item  href="/">
-                 {state?"Logout":"Login"}
+              <Nav.Link href="/">
+                <NavDropdown.Item onClick={handleLogout}>
+                  {state ? "Logout" : "Login"}
                 </NavDropdown.Item>
               </Nav.Link>
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>
-        
       </Container>
-     
-      
     </Navbar>
   );
 };

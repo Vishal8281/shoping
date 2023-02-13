@@ -11,6 +11,12 @@ const Buy = () => {
   console.log("Buy", state);
   const navigate = useNavigate();
 
+  const get = sessionStorage.getItem("userdata");
+  console.log("storage",JSON.parse(get))
+  const number = JSON.parse(get);
+
+  
+   
   const [data, setData] = useState({
     count: "",
     mnumber:"",

@@ -7,8 +7,10 @@ import Seller from "./seller";
 
 const Shome = ({}) => {
   const [open, setOpean] = useState(false);
-  const { state } = useLocation();
-  console.log(state);
+
+  const get =sessionStorage.getItem("userdata")
+
+  const state=JSON.parse(get)
 
 
   const handleClicksell =()=>{
@@ -21,7 +23,7 @@ const handleClick=()=>{
 
   return (
     <>
-      <Navbar state={state} />
+      <Navbar />
 
       <Row style={{ backgroundColor: "" }}>
         <Col>

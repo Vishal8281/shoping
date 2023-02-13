@@ -1,11 +1,11 @@
-const { Product, User,Seller } = require("../models/product.js");
+const { Product, User,Seller,Order,Cart } = require("../models/product.js");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
 const { createjwt } = require("../utils/jwt.js");
 
 exports.postCreateProduct = (req, res) => {
-  console.log("server create", req.body);
+  // console.log("server create", req.body);
   Product.create(req.body)
     .then((data) => res.json({ message: "added ", data }))
     .catch((err) => res.status(404).json({ error: err.message }));
@@ -17,42 +17,42 @@ exports.getAllProduct = (req, res) => {
     .catch((err) => res.status(404).json({ error: err.message }));
 };
 
-// exports.findProduct = (req, res) => {
-//   console.log("server update", req.body);
-//   Product.find({ _id:req.params.id})
-//     .then((data) => res.json({ message: "ok", data }))
-//     .catch((err) => res.status(404).json({ error: err.message }));
-// };
+exports.postAcceptOrder = (req, res) => {
+  // console.log("server update", req.body);
+    Order.create(req.body)
+    .then((data) => res.json({ message: "accpted", data }))
+    .catch((err) => res.status(404).json({ error: err.message }));
+};
 
 exports.getProductbyFood = (req, res) => {
-  console.log("get food");
+  // console.log("get food");
   Product.find({ categorise: "food" })
     .then((data) => res.json({ data }))
     .catch((err) => res.status(404).json({ error: err.message }));
 };
 
 exports.getProductbyCloth = (req, res) => {
-  console.log("get cloth");
+  // console.log("get cloth");
   Product.find({ categorise: "cloth" })
     .then((data) => res.json({ data }))
     .catch((err) => res.status(404).json({ error: err.message }));
 };
 
 exports.getProductbyElectronics = (req, res) => {
-  console.log("get cloth");
+ // console.log("get cloth");
   Product.find({ categorise: "electronics" })
     .then((data) => res.json({ data }))
     .catch((err) => res.status(404).json({ error: err.message }));
 };
 
 exports.getProductbyBook = (req, res) => {
-  console.log("get cloth");
+ // console.log("get cloth");
   Product.find({ categorise: "book" })
     .then((data) => res.json({ data }))
     .catch((err) => res.status(404).json({ error: err.message }));
 };
 exports.getProductbyFootwear = (req, res) => {
-  console.log("get cloth");
+ // console.log("get cloth");
   Product.find({ categorise: "footwear" })
     .then((data) => res.json({ data }))
     .catch((err) => res.status(404).json({ error: err.message }));
@@ -71,19 +71,53 @@ exports.postUserBuy=(req,res)=>{
   .catch((err) => res.status(404).json({ error: err.message }));
 }
 
+exports.postCreateCart = (req, res) => {
+ // console.log("server create", req.body);
+  Cart.create(req.body)
+    .then((data) => res.json({ message: "added ", data }))
+    .catch((err) => res.status(404).json({ error: err.message }));
+};
+
 exports.getOrder=(req,res)=>{
   // console.log("response",req.params.number)
   Seller.find( { number:req.params.number})
   .then((data) => res.json({ message: "order", data }))
   .catch((err) => res.status(404).json({ error: err.message }));
 }
+
+exports.getUserOrder=(req,res)=>{
+  Order.find({mnumber:req.params.mnumber})
+  .then((data) => res.json({ message: " user order", data }))
+  .catch((err) => res.status(404).json({ error: err.message }));
+}
+exports.getUserCart=(req,res)=>{
+  //console.log( "compare",req.params.usernumber)
+  Cart.find({usernumber:req.params.usernumber})
+  .then((data) => res.json({ message: " user cart", data }))
+  .catch((err) => res.status(404).json({ error: err.message }));
+}
+
+exports.deleteOrder=(req,res)=>{
+  Seller.findByIdAndDelete(req.params.id,req.body)
+  .then((data) => res.json({ message: "order deleted", data }))
+  .catch((err) => res.status(404).json({ error: err.message }));
+}
+
+
+exports.deleteCart=(req,res)=>{
+  Cart.findByIdAndDelete(req.params.Did,req.body)
+  .then((data) => res.json({ message: "Cart deleted", data }))
+  .catch((err) => res.status(404).json({ error: err.message }));
+}
+
+
 /// login //
 
 const emailRegexp =
   /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
 
 exports.postUserSignup = (req, res) => {
-  console.log("user added");
+ // console.log("user added");
   let { number, username, email, password, confpassword } = req.body;
 
   let errors = [];

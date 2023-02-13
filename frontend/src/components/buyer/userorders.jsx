@@ -1,39 +1,14 @@
 import { Card, Container, Button } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Navbar  from "./Navbar";
 
 const OrderCard = ({ data }) => {
-  const [accept, setAccept] = useState(false);
 
-  const handleAccept = () => {
-    console.log("accepted");
-    axios
-      .post("http://localhost:8000/api/product/accept", data)
-      .then((res) => {
-        console.log(res);
-
-        setAccept(true);
-      })
-      .catch((err) => {
-        console.log(err);
-        alert("alredy accpted");
-      });
-  };
-
-
-  const hndleDelete=()=>{
-  axios.delete(`http://localhost:8000/api/product/${data._id}`)
-  .then((res)=>{
-   alert("Order Deleted")
-  })
-  .catch((err)=>{
-   console.log(err)
-  })
-
-  }
-
+   console.log("yhuj".num)
   return (
-    <li>
+    <>
+ <li>
       <Card
         style={{
           backgroundColor: "whitesmoke",
@@ -48,22 +23,26 @@ const OrderCard = ({ data }) => {
         <Card.Text>Address: {data.address}</Card.Text>
         <Card.Text>Mobile No.: {data.mnumber}</Card.Text>
         <Card.Title> Total Price: ${data.price * data.count}</Card.Title>
-        {accept ? (
-          <Button onClick={hndleDelete}>Delete</Button>
-        ) : (
-          <Button onClick={handleAccept}>Accept</Button>
-        )}
       </Card>
-    </li>
+    </li> 
+    </>
   );
 };
 
-const Order = ({ state }) => {
+const Userorder = () => {
   const [order, setOrder] = useState([]);
+
+  const get = sessionStorage.getItem("userdata");
+
+  const state = JSON.parse(get);
+
+ 
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8000/api/product/${state ? state.number : ""}`)
+      .get(
+        `http://localhost:8000/api/product/${state ? state.number : ""}`
+      )
       .then((res) => {
         //  console.log("order", res.data.data);
         setOrder(res.data.data);
@@ -75,9 +54,9 @@ const Order = ({ state }) => {
 
   return (
     <>
+    <Navbar/>
+      <h1>your orders</h1>
       <ul>
-        <h2>Number of orders are {order.length}</h2>
-        <hr />
         {order.map((data) => (
           <OrderCard data={data} />
         ))}
@@ -86,4 +65,4 @@ const Order = ({ state }) => {
   );
 };
 
-export default Order;
+export default Userorder;

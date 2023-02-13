@@ -1,5 +1,5 @@
 import Navbar from "./Navbar";
-import { Link } from "react-router-dom";
+import { Link,useLocation } from "react-router-dom";
 import { Card, Col, Container, Row } from "react-bootstrap";
 import Cloth from "./images/cloths.jpg";
 import Food from "./images/grocery.jpg";
@@ -11,6 +11,9 @@ import Stationery from "./images/stationery.jpg";
 
 
 const Home = () => {
+ 
+
+
   return (
     <div style={{backgroundColor:"#FFFAFA"}}>
       <Navbar />

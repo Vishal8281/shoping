@@ -17,7 +17,7 @@ const Login = () => {
     password: "",
   });
 
-  const [userlogin, setUserlogin] = useState(false);
+
 
 
 
@@ -39,9 +39,9 @@ const Login = () => {
           password: "",
         });
         console.log(res.data.user);
-        setUserlogin(true);
-        navigate("/shop", {state:res.data.user});
-       
+        sessionStorage.setItem("userdata",JSON.stringify(res.data.user))
+        navigate("/shop");
+        window.location.reload(false);
       
       })
       .catch((err) => {
